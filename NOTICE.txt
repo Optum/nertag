@@ -1,9 +1,9 @@
-<Insert Project Name Here>
-Copyright 2021 Optum
+@optum/nertag
+Copyright 2022 Optum
 
 Project Description:
 ====================
-<Short description of your project>
+An automated named-entity recognition tagger
 
 Author(s):
-<List the names and GitHub IDs of the original project authors>
+@thebhsu

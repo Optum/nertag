@@ -17,31 +17,30 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![Apache 2.0 License][license-shield]][license-url]
 
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <!-- <a href="https://github.com/Optum/nertag">
+    <img src="assets/logo.png" alt="Logo" width="80" height="80">
+  </a> -->
 
-<h3 align="center">project_title</h3>
+<h3 align="center">NERTag</h3>
 
   <p align="center">
-    project_description
+    An automated named-entity recognition tagger
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <!-- <a href="https://github.com/Optum/nertag"><strong>Explore the docs »</strong></a> -->
+    <!-- <br /> -->
+    <!-- <br /> -->
+    <!-- <a href="https://github.com/Optum/nertag">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/Optum/nertag/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/Optum/nertag/issues">Request Feature</a> -->
   </p>
 </div>
 
@@ -51,25 +50,11 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -78,24 +63,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<div align="center">
+  <a href="assets/screenshot.png">
+    <img src="assets/screenshot.png" height="479" width="924" alt="NERTag Screen Shot">
+  </a>
+</div>
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+**NERTag** is a nimble python package that automatically tags or labels named entities ([IOB2](https://en.wikipedia.org/wiki/Inside–outside–beginning_(tagging)) format) using a taxonomy or dictionary of terms. It aims to be simple, modular, and fast, and utilizes multiprocessing for large-scale data-labeling. Labeling a document of 1.8 billion characters with a taxonomy of 15k terms and 300 entities takes roughly ~60 minutes, with the main bottleneck stemming from disk I/O.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -104,32 +78,14 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To use **NERTag**, it is recommended to create a [conda](https://www.anaconda.com/products/distribution) virtual environment with Python 3.9+.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+```shell
+user $ conda create --name nertag python=3.9
+user $ conda activate nertag
+user (nertag) $ git clone https://github.com/Optum/nertag
+user (nertag) $ pip install .
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -138,23 +94,156 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+**NERTag** is made up of 3 distinct components:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1. Text preprocessing: defines text preprocessing to use
+2. Base labeling behavior: defines default text labeling behavior
+3. Tagging algorithm: defines how to label entities
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+In this example, the tagging algorithm utilizes a taxonomy of terms.
 
+---
 
+A toy example is provided below.
 
-<!-- ROADMAP -->
-## Roadmap
+<details>
+<summary>Sample code</summary>
 
-- [] Feature 1
-- [] Feature 2
-- [] Feature 3
-    - [] Nested Feature
+```python
+import pandas as pd
+from nertag import ner, preprocess, utils, tagging
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+# --- Taxonomy
+path = "taxonomy.csv"
+df = utils.preprocess_df(
+    pd.read_csv(path), stemmer=utils.lemmatizer, filters=utils.stop_words, tokenizer=utils.tokenizer
+)
+dct = utils.setup_dict(df)
+
+# --- Data
+texts = [
+    "my account is closed",
+    "my account is locked what account can i use to unlock it",
+    "how do i check my fsa",
+    "Also known as second molars. Back teeth that come in at around the age of 12.",
+    "Hello. Need to update my account info, where can I make updates to my account address information?",
+    "Need to update address information because I want to make account updates.",
+]
+
+# --- Pipeline
+# NOTE: By default, punctuation is removed, words are stemmed, whitespaces are replaced with a single space, and stopwords are removed.
+preprocessor = ner.Preprocessor(
+    preprocess.preprocess,
+    stemmer=utils.lemmatizer,
+    stop_words=utils.stop_words,
+    start=4,
+    stop=0,
+    step=-1,
+)
+baselabeler = ner.BaseLabeler(utils.base_label, utils.tokenizer)
+tagger = ner.Tagger(tagging.ner_tagging, dct)
+pipeline = ner.NER(preprocessor, baselabeler, tagger)
+
+results = pipeline.sequential_labeling(texts)
+
+print(results)
+```
+
+</details>
+
+<details>
+<summary>Sample output</summary>
+
+```shell
+my account is closed
+            entity     word  index  start  end
+0                O       my      0      0    2
+1  B-cancellations  account      1      3   10
+2  I-cancellations       is      2     11   13
+3  I-cancellations   closed      3     14   20
+
+my account is locked what account can i use to unlock it
+              entity     word  index  start  end
+0                  O       my      0      0    2
+1   B-account locked  account      1      3   10
+2   I-account locked       is      2     11   13
+3   I-account locked   locked      3     14   20
+4   I-account locked     what      4     21   25
+5   I-account locked  account      5     26   33
+6                  O      can      6     34   37
+7                  O        i      7     38   39
+8         B-common1k      use      8     40   43
+9                  O       to      9     44   46
+10                 O   unlock     10     47   53
+11                 O       it     11     54   56
+
+how do i check my fsa
+                            entity   word  index  start  end
+0                                O    how      0      0    3
+1                                O     do      1      4    6
+2                                O      i      2      7    8
+3                       B-common1k  check      3      9   14
+4                                O     my      4     15   17
+5  B-FSA:Flexible Spending Account    fsa      5     18   21
+
+Also known as second molars. Back teeth that come in at around the age of 12.
+              entity     word  index  start  end
+0         B-common1k     Also      0      0    4
+1                  O    known      1      5   10
+2                  O       as      2     11   13
+3         B-common1k   second      3     14   20
+4           B-dental  molars.      4     21   28
+5         B-common1k     Back      5     29   33
+6   B-35:Dental Care    teeth      6     34   39
+7                  O     that      7     40   44
+8         B-common1k     come      8     45   49
+9                  O       in      9     50   52
+10                 O       at     10     53   55
+11                 O   around     11     56   62
+12                 O      the     12     63   66
+13                 O      age     13     67   70
+14                 O       of     14     71   73
+15                 O      12.     15     74   77
+
+Hello. Need to update my account info, where can I make updates to my account address information?
+              entity          word  index  start  end
+0                  O        Hello.      0      0    6
+1   B-account update          Need      1      7   11
+2   I-account update            to      2     12   14
+3   I-account update        update      3     15   21
+4                  O            my      4     22   24
+5                  O       account      5     25   32
+6                  O         info,      6     33   38
+7                  O         where      7     39   44
+8                  O           can      8     45   48
+9                  O             I      9     49   50
+10  B-account update          make     10     51   55
+11  I-account update       updates     11     56   63
+12                 O            to     12     64   66
+13                 O            my     13     67   69
+14                 O       account     14     70   77
+15         B-address       address     15     78   85
+16         I-address  information?     16     86   98
+
+Need to update address information because I want to make account updates.
+              entity         word  index  start  end
+0         B-common1k         Need      0      0    4
+1                  O           to      1      5    7
+2   B-account update       update      2      8   14
+3   I-account update      address      3     15   22
+4   I-account update  information      4     23   34
+5                  O      because      5     35   42
+6                  O            I      6     43   44
+7         B-common1k         want      7     45   49
+8                  O           to      8     50   52
+9         B-common1k         make      9     53   57
+10  B-account update      account     10     58   65
+11  I-account update     updates.     11     66   74
+```
+
+</details>
+
+_For more examples, please refer to [notebooks](notebooks) and [examples](examples)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -178,35 +267,12 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- MAINTAINERS -->
-## Maintainers
+## Contact
 
-- Full Name 1
-  - GitHub Enterprise: [github_username](https://github.com/username1)
-  - Email: email1@email.com
-- Full Name 2
-  - GitHub Enterprise: [github_username](https://github.com/username2)
-  - Email: email2@email.com
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+- Brandon Hsu
+  - GitHub: [thbhsu](https://github.com/thebhsu)
+  - Email: thebhsu@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -214,16 +280,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[contributors-shield]: https://img.shields.io/github/contributors/Optum/nertag.svg?style=for-the-badge
+[contributors-url]: https://github.com/Optum/nertag/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Optum/nertag.svg?style=for-the-badge
+[forks-url]: https://github.com/Optum/nertag/network/members
+[stars-shield]: https://img.shields.io/github/stars/Optum/nertag.svg?style=for-the-badge
+[stars-url]: https://github.com/Optum/nertag/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Optum/nertag.svg?style=for-the-badge
+[issues-url]: https://github.com/Optum/nertag/issues
+[license-shield]: https://img.shields.io/github/license/Optum/nertag.svg?style=for-the-badge
+[license-url]: LICENSE
